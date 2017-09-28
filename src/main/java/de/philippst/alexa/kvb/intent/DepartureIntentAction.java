@@ -4,7 +4,6 @@ import com.amazon.speech.slu.Intent;
 import com.amazon.speech.slu.Slot;
 import com.amazon.speech.speechlet.Session;
 import com.amazon.speech.speechlet.SpeechletResponse;
-import com.amazon.speech.speechlet.interfaces.display.Display;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
@@ -25,11 +24,14 @@ public class DepartureIntentAction implements IntentAction {
 
     private static final Logger logger = LoggerFactory.getLogger(DepartureIntentAction.class);
 
-    @Inject
-    StationService stationService;
+    private StationService stationService;
+    private UserService userService;
 
     @Inject
-    UserService userService;
+    public DepartureIntentAction(StationService stationService, UserService userService) {
+        this.stationService = stationService;
+        this.userService = userService;
+    }
 
     @Override
     public SpeechletResponse perform(Intent intent, Session session) {
@@ -55,7 +57,7 @@ public class DepartureIntentAction implements IntentAction {
         return this.stationDepartureResponse(stationId, session);
     }
 
-    public SpeechletResponse stationNotFoundResponse(){
+    private SpeechletResponse stationNotFoundResponse(){
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
         speech.setText("Es tut mir leid, ich habe die Haltestelle nicht verstanden. Bitte nutze möglichst die " +
                 "vollständige Bezeichnung und keine Abkürzungen. Wie heißt die Haltestelle?");
@@ -69,11 +71,11 @@ public class DepartureIntentAction implements IntentAction {
         return SpeechletResponse.newAskResponse(speech, reprompt);
     }
 
-    public SpeechletResponse stationDepartureResponse(Integer stationId, final Session session) {
+    private SpeechletResponse stationDepartureResponse(Integer stationId, final Session session) {
         logger.info("getStationDepartureResponse id: {}", stationId);
         KvbStation station = null;
         try {
-            station = StationService.getStationDeparture(stationId);
+            station = this.stationService.getStationDeparture(stationId);
         } catch (KvbException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -91,8 +93,8 @@ public class DepartureIntentAction implements IntentAction {
             List<KvbStationDeparture> limitDepartures = departures.subList(0, 4 > departures.size() ? departures.size() : 4);
             for (KvbStationDeparture departure : limitDepartures) {
                 stringBuilder.append(String.format("Linie %s nach %s ", departure.getLine(), departure.getDestination()));
-                if (departure.getMinutes() == 0) stringBuilder.append(String.format("Abfahrt sofort."));
-                if (departure.getMinutes() == 1) stringBuilder.append(String.format("in einer Minute."));
+                if (departure.getMinutes() == 0) stringBuilder.append("Abfahrt sofort.");
+                if (departure.getMinutes() == 1) stringBuilder.append("in einer Minute.");
                 if (departure.getMinutes() > 1)
                     stringBuilder.append(String.format("in %s Minuten.", departure.getMinutes()));
                 stringBuilder.append("<break strength=\"strong\" />");
@@ -150,7 +152,7 @@ public class DepartureIntentAction implements IntentAction {
         return simpleCard;
     }
 
-    public SpeechletResponse askStation() {
+    private SpeechletResponse askStation() {
         // Create the plain text output.
         PlainTextOutputSpeech speech = new PlainTextOutputSpeech();
         speech.setText("An welcher Haltestelle?");

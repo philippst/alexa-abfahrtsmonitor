@@ -38,7 +38,7 @@ public class StationService {
         return stationId;
     }
 
-    public static KvbStation getStationDeparture(int stationId) throws KvbException, IOException {
+    public KvbStation getStationDeparture(int stationId) throws KvbException, IOException {
         if(stationId == 0) throw new KvbException("Invalid kvb station id");
 
         KvbStation kvbStation = new KvbStation();
@@ -54,21 +54,15 @@ public class StationService {
         return kvbStation;
     }
 
-    public static List<String> getDisruptionMessagesTrain() throws IOException {
+    public List<String> getGlobalDisruptionMessages(boolean bus) throws IOException {
         String url = "http://www.kvb-koeln.de/german/home/mofis_bahn.html";
+        if(bus) url = "http://www.kvb-koeln.de/german/home/mofis_bus.html";
+
         Document dom = Jsoup.parse(new URL(url).openStream(),"ISO-8859-1",url);
-        List<String> disruptionMessages = KvbStationDomExtractor.getGlobalDisruptionMessage(dom);
-        return disruptionMessages;
+        return KvbStationDomExtractor.getGlobalDisruptionMessage(dom);
     }
 
-    public static List<String> getDisruptionMessagesBus() throws IOException {
-        String url = "http://www.kvb-koeln.de/german/home/mofis_bus.html";
-        Document dom = Jsoup.parse(new URL(url).openStream(),"ISO-8859-1",url);
-        List<String> disruptionMessages = KvbStationDomExtractor.getGlobalDisruptionMessage(dom);
-        return disruptionMessages;
-    }
-
-    public static HashMap<String,Integer> getStations() throws KvbException, IOException {
+    public HashMap<String,Integer> getStations() throws KvbException, IOException {
 
         String url = "http://www.kvb-koeln.de/german/mofis/mofis.html";
         Document dom = Jsoup.parse(new URL(url).openStream(),"ISO-8859-1",url);

@@ -6,6 +6,7 @@ import com.google.inject.Guice;
 
 import java.util.Set;
 
+@SuppressWarnings("unused")
 public final class KvbAlexaSkillRequestHandler extends SpeechletRequestStreamHandler {
 
     private static final Set<String> supportedApplicationIds = ImmutableSet.of(

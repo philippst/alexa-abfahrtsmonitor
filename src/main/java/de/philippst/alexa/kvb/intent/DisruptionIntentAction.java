@@ -9,10 +9,18 @@ import com.amazon.speech.ui.SsmlOutputSpeech;
 import de.philippst.alexa.kvb.service.StationService;
 import de.philippst.alexa.kvb.utils.TextToSpeechHelper;
 
+import javax.inject.Inject;
 import java.io.IOException;
 import java.util.List;
 
 public class DisruptionIntentAction implements IntentAction {
+
+    private StationService stationService;
+
+    @Inject
+    public DisruptionIntentAction(StationService stationService) {
+        this.stationService = stationService;
+    }
 
     @Override
     public SpeechletResponse perform(Intent intent, Session session) {
@@ -21,15 +29,15 @@ public class DisruptionIntentAction implements IntentAction {
 
         try {
             if(intent.getName().equals("DisruptionBus")){
-                disruptions = StationService.getDisruptionMessagesBus();
+                disruptions = this.stationService.getGlobalDisruptionMessages(true);
             } else {
-                disruptions = StationService.getDisruptionMessagesTrain();
+                disruptions = this.stationService.getGlobalDisruptionMessages(false);
             }
 
             if (disruptions.size() > 0) {
                 StringBuilder stringBuilder = new StringBuilder();
                 for (String disruptionMessage : disruptions) {
-                    stringBuilder.append(" " + TextToSpeechHelper.disruptionSSML(disruptionMessage));
+                    stringBuilder.append(" ").append(TextToSpeechHelper.disruptionSSML(disruptionMessage));
                 }
                 String textString = stringBuilder.toString();
                 SsmlOutputSpeech speech = new SsmlOutputSpeech();
@@ -50,7 +58,7 @@ public class DisruptionIntentAction implements IntentAction {
 
     }
 
-    public static SimpleCard getDisruptionCard(List<String> disruptionMessages){
+    private SimpleCard getDisruptionCard(List<String> disruptionMessages){
         SimpleCard simpleCard = new SimpleCard();
         simpleCard.setTitle("Störungen");
         StringBuilder stringBuilder = new StringBuilder();

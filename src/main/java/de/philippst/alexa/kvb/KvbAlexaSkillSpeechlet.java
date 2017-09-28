@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 public class KvbAlexaSkillSpeechlet implements Speechlet {
 
-    private static final Logger logger = LoggerFactory.getLogger(KvbAlexaSkillSpeechlet.class);
+    private final Logger logger = LoggerFactory.getLogger(KvbAlexaSkillSpeechlet.class);
 
     private final IntentHandlerService intentHandlerService;
 
@@ -22,22 +22,22 @@ public class KvbAlexaSkillSpeechlet implements Speechlet {
     @Override
     public void onSessionStarted(final SessionStartedRequest request, final Session session)
             throws SpeechletException {
-        logger.info("onSessionStarted requestId=" + request.getRequestId() +
-                ", sessionId=" + session.getSessionId());
+        logger.info("onSessionStarted requestId={}, sessionId={}",request.getRequestId(),session.getSessionId());
     }
 
     @Override
     public SpeechletResponse onLaunch(LaunchRequest request, Session session) throws SpeechletException {
-        logger.info("request launch event");
+        logger.info("onLaunch requestId={}, sessionId={}",request.getRequestId(),session.getSessionId());
         return intentHandlerService.handle("WelcomeIntent", null, session);
     }
 
     @Override
     public SpeechletResponse onIntent(final IntentRequest request, final Session session) throws SpeechletException {
-        logger.info("onIntent requestId=" + request.getRequestId() + ", sessionId=" + session.getSessionId());
 
         Intent intent = request.getIntent();
         String intentName = (intent != null) ? intent.getName() : null;
+
+        logger.info("onIntent={} requestId={}, sessionId={}", intent, request.getRequestId(), session.getSessionId());
 
         return intentHandlerService.handle(intentName, intent, session);
     }
