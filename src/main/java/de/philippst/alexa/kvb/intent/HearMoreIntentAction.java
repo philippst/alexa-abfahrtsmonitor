@@ -1,6 +1,7 @@
 package de.philippst.alexa.kvb.intent;
 
-import com.amazon.speech.slu.Intent;
+import com.amazon.speech.speechlet.Context;
+import com.amazon.speech.speechlet.IntentRequest;
 import com.amazon.speech.speechlet.Session;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.SsmlOutputSpeech;
@@ -15,7 +16,7 @@ public class HearMoreIntentAction implements IntentAction {
     AmazonStopIntentAction amazonStopIntentAction;
 
     @Override
-    public SpeechletResponse perform(Intent intent, Session session) {
+    public SpeechletResponse perform(IntentRequest intent, Session session, Context context) {
         if (session.getAttributes().containsKey("disruption")) {
             List<String> disruptionMessages = (List<String>) session.getAttribute("disruption");
             StringBuilder stringBuilder = new StringBuilder();
@@ -28,6 +29,6 @@ public class HearMoreIntentAction implements IntentAction {
             speech.setSsml("<speak>" + textString + "</speak>");
             return SpeechletResponse.newTellResponse(speech);
         }
-        return amazonStopIntentAction.perform(intent,session);
+        return amazonStopIntentAction.perform(intent,session,context);
     }
 }

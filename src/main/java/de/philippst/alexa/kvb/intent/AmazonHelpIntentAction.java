@@ -1,6 +1,7 @@
 package de.philippst.alexa.kvb.intent;
 
-import com.amazon.speech.slu.Intent;
+import com.amazon.speech.speechlet.Context;
+import com.amazon.speech.speechlet.IntentRequest;
 import com.amazon.speech.speechlet.Session;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
@@ -13,7 +14,7 @@ public class AmazonHelpIntentAction implements IntentAction {
     }
 
     @Override
-    public SpeechletResponse perform(Intent intent, Session session) {
+    public SpeechletResponse perform(IntentRequest intent, Session session, Context context) {
         String helpText = "" +
                 "<p>Mit dem Wort \"Abfahrt\" erhältst du die nächsten Abfahrtszeiten an einer Haltestelle. " +
                 "Ich merke mir die letzte Haltestelle, damit du diese nicht jedes Mal erneut sagen mussst. </p> " +
