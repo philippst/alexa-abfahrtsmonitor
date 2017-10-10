@@ -36,7 +36,7 @@ public class StationService {
 
     public Integer stationProcessor(String stationString) {
         Table table = docClient.getTable("AlexaKvb_Station");
-        Item item = table.getItem("StationTitle", stationString);
+        Item item = table.getItem("StationTitle", stationString.toLowerCase());
         Integer stationId = (item == null) ? null : item.getInt("StationId");
         logger.info("translate stationTitle: {} => {}", stationString, stationId);
         return stationId;

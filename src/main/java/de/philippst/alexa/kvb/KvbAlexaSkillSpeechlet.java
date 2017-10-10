@@ -41,6 +41,8 @@ public class KvbAlexaSkillSpeechlet implements SpeechletV2 {
         Session session = requestEnvelope.getSession();
         logger.info("onIntent requestId={}, sessionId={}", request.getRequestId(), session.getSessionId());
 
+        logger.info("onIntent {}", request.getIntent().getName());
+
         return intentHandlerService.handle(requestEnvelope);
     }
 
