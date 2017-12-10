@@ -5,13 +5,14 @@ import de.philippst.alexa.kvb.model.KvbDisruption;
 import de.philippst.alexa.kvb.model.KvbStationDeparture;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class KvbStationDomExtractorTest {
     private File getResourceFile(String name) {
@@ -26,10 +27,10 @@ public class KvbStationDomExtractorTest {
         assertEquals("Leyendeckerstr.",stationTitel);
     }
 
-    @Test(expected=KvbException.class)
+    @Test
     public void getStationTitleEmpty() throws Exception {
         Document dom = Jsoup.parse(getResourceFile("invalid-station.html"),"utf-8");
-        KvbStationDomExtractor.getStationTitle(dom);
+        assertThrows(KvbException.class, () -> KvbStationDomExtractor.getStationTitle(dom));
     }
 
     @Test
