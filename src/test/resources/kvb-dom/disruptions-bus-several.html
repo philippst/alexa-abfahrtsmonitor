@@ -1,204 +1,225 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>K&ouml;lner Verkehrs-Betriebe AG</title>
     <meta name="author" content="Vipex Media Services GmbH | www.vipex.de | CMS: AdOvo www.adovo.de" />
-    <meta name="copyright" content="Kölner Verkehrs-Betriebe AG Unternehmenskommunikation" />
-    <link rel="stylesheet" href="/css/kvb.v2.css?20130319" type="text/css" media="Screen" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <link href="/css/kvb.v2.mobil.css" rel="stylesheet" type="text/css" />
-    <script src="/skripte/jquery-1.2.6.min.js" type="text/javascript"></script>
+    <meta name="copyright" content="K&ouml,lner Verkehrs-Betriebe AG" />
+    <meta name="language" content="de" />
+    <meta name="robots" content="INDEX,FOLLOW" />
+    <meta name="page-topic" content="K&ouml,lner Verkehrs-Betriebe AG" />
+    <meta name="audience" content="Alle" />
+    <meta name="content-language" content="DE, deutsch" />
+    <meta name="revisit-after" content="2 days" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/slider-pro.min.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
+
 <body>
-<center>
-    <div class="mobileheader mobileshow" style="display:none;">
-        <img id="menubutton" src="http://1.1.1.2/bmi/www.kvb-koeln.de/images/tpl/mobile_menu_icon.png" style="float:right;cursor:pointer;" alt="Men&uuml;" width="36" />
-        <a href="/german/home/" style="color:#000000;text-decoration:none;">Kölner Verkehrs-Betriebe AG<br />KVB - Menschen bewegen.<br /></a>
-        <div id="mobilemenuopen" style="display:none;">
-            <ul class="mobile_menu"></ul>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<nav class="navbar hidden-xs" id="nav-second">
+    <div class="container">
+        <ul class="nav">
+            <li><a href="/unternehmen/kontakt/index.html">Kontakt</a></li>
+            <li><a href="/unternehmen/presse/index.html">Presse</a></li>
+            <li><a href="/unternehmen/karriere/index.html">Karriere</a></li>
+            <!-- > <li><a href="#!"><img src="/img/flag-de.png" alt=""> DE <span class="caret"></span></a></li>   -->
+
+            <li style="float:right;" data-toggle="tooltip" title="QR-Code generieren" data-placement="left"><a href="#!?custom=true" rel="qrcode" style="padding-right:5px;"><i class="fa fa-qrcode" style="font-size:1.7rem;" aria-hidden="true"></i></a></li>
+            <li style="float:right;" data-toggle="tooltip" title="Seite drucken" data-placement="left"><a href="javascript:window.print();" class="print" title="Seite drucken" style="padding-right:5px;"><i class="fa fa-print" style="font-size:1.7rem;" aria-hidden="true"></i></a></li>
+
+        </ul>
+    </div>
+</nav>
+
+<nav class="navbar red" id="nav-main">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/" class="kvb-logo visible-xs"><img src="/img/kvb_logo_w.png" alt=""></a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainnav-collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="mainnav-collapse">
+            <a href="/" class="kvb-logo hidden-xs"><img src="/img/kvb_logo_w.png" alt=""></a>
+
+            <ul class="nav navbar-nav">
+                <!--<li class="visible-xs" style="text-align: right;"><a href="#!"><img src="/img/flag-de.png" alt=""> DE <span class="caret"></span></a></li>-->
+                <li class="dropdown">
+                    <a href="/fahrtinfo/index.html" class="dropdown-link">Fahrtinfo</a>
+                    <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    <ul class="dropdown-menu"><li><a href="/fahrtinfo/betriebslage/index.html">Aktuelle St&ouml;rungen</a></li>
+                        <li><a href="https://auskunft.kvb-koeln.de/kvb/cgi">Fahrplanauskunft</a></li>
+                        <li><a href="https://auskunft.kvb-koeln.de/kvb/cgi/page/eingabeHaltestellenfahrplan">Haltestellenauskunft</a></li>
+                        <li><a href="/haltestellen/index.html">Haltestelleninfos</a></li>
+                        <li><a href="/qr/haltestellen.html">Live-Abfahrtszeiten</a></li>
+                        <li><a href="/fahrtinfo/liniennetzplaene.html">Liniennetzpl&auml;ne</a></li>
+                        <li><a href="/fahrtinfo/baustellen/index.html">Baustellen</a></li>
+                        <li><a href="/fahrtinfo/nachtverkehr.html">Nachtverkehr</a></li>
+                        <li><a href="/fahrtinfo/minifahrplaene.html">Minifahrpl&auml;ne</a></li>
+                        <li><a href="/fahrtinfo/widget-generator/index.html">Fahrtinfo f&uuml;r Ihre Website</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/tickets/index.html" class="dropdown-link">Tickets</a>
+                    <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    <ul class="dropdown-menu"><li><a href="/tickets/welches_ticket/index.html">Welches Ticket brauche ich?</a></li>
+                        <li><a href="/tickets/ticketkauf/index.html">Wo kann ich ein Ticket kaufen?</a></li>
+                        <li><a href="/tickets/tarifgebiete/index.html">Tarifgebiete</a></li>
+                        <li><a href="/tickets/faq.html">FAQ</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/service/index.html" class="dropdown-link">Service</a>
+                    <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    <ul class="dropdown-menu"><li><a href="/service/ast_und_taxibus.html">AST & TaxiBus</a></li>
+                        <li><a href="/service/barrierefreiheit.html">Barrierefreiheit</a></li>
+                        <li><a href="/service/carsharing/index.html">Carsharing</a></li>
+                        <li><a href="/service/kvb-rad.html">KVB-Rad</a></li>
+                        <li><a href="/service/mobigarantie.html">Mobilit&auml;tsgarantie</a></li>
+                        <li><a href="/service/park_and_ride.html">Park/Bike & Ride</a></li>
+                        <li><a href="/service/spielregeln/index.html">Spielregeln</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="/unternehmen/index.html" class="dropdown-link">Unternehmen</a>
+                    <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    <ul class="dropdown-menu"><li><a href="/unternehmen/compliance/index.html">Compliance</a></li>
+                        <li><a href="/unternehmen/geschichte/index.html">Geschichte</a></li>
+                        <li><a href="/unternehmen/karriere/index.html">Karriere</a></li>
+                        <li><a href="/unternehmen/seilbahn.html">K&ouml;lner Seilbahn</a></li>
+                        <li><a href="/unternehmen/kontakt/index.html">Kontakt</a></li>
+                        <li><a href="/unternehmen/nord-sued-stadtbahn.html">Nord-S&uuml;d-Stadtbahn K&ouml;ln</a></li>
+                        <li><a href="/unternehmen/presse/index.html">Print und Presse</a></li>
+                        <li><a href="/unternehmen/museum_thielenbruch.html">Stra&szlig;enbahn-Museum Thielenbruch</a></li>
+                        <li><a href="/unternehmen/die_kvb/index.html">Wir sind die KVB</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#!" class="search-link"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+                <div class="container-search">
+                    <div class="input-group">
+                        <form method="post" action="/suche/" id="searchForm">
+                            <input type="text" class="form-control" placeholder="Suchbegriff eingeben..." name="SEARCHSTRING" aria-describedby="basic-addon1">
+                            <input type="hidden" name="SEARCHSTARTPATH" value="/" />
+                            <input type="submit" name="abschicken" value="&raquo; Suchen" style="display:none;" />
+                        </form>
+                        <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+            </ul>
         </div>
     </div>
-    <div id="gesamt">
-        <a name="anfang" id="anfang"></a>
-        <div id="header">
-            <a href="/german/home/index.html"><img src="http://1.1.1.2/bmi/www.kvb-koeln.de/images/tpl/header/10.jpg" width="1004" height="159" title="KVB Koeln" alt="KVB Koeln" /></a>
-        </div>
-        <div id="subheader">
-            <div class="floatleft font11">
-                <form method="post" action="/suche/index.html" id="searchForm">
-                    <a href="javascript:OpenPrint('');"><img src="http://1.1.1.3/bmi/www.kvb-koeln.de/images/tpl/drucken.gif" alt="Seite drucken" title="Seite drucken" class="floatleft" style="padding: 9px 0px 0 0;" width="44" height="18" /></a>
-                    <input type="hidden" name="SEARCHSTARTPATH" value="/" />
-                    <input type="text" name="SEARCHSTRING" value="Suchtext" onfocus="if(this.value == 'Suchtext') this.value='';" onblur="if (this.value=='') this.value='Suchtext';" class="suchfeld" />
-                    <input type="submit" value="&raquo; Suchen" style="font-family:verdana,arial;font-size:11px;color:#58595B;font-weight:normal;border:0px solid #eceded;background-color:#eceded;padding: 9px 5px 0 0;" />
-                </form>
+</nav>    <header>
+    <div class="container-sm hidden-xs">
+        <ul class="nav navbar-nav" style="opacity:0.85;">
+            <li><a href="https://www.facebook.com/KVB.AG/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a><div class="tag">Facebook</div></li>
+            <li><a href="https://twitter.com/kvbag" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a><div class="tag">Twitter</div></li>
+            <li><a href="https://www.instagram.com/kvbag/" target="_blank"<i class="fa fa-instagram" aria-hidden="true"></i></a><div class="tag">Instagram</div></li>
+            <li><a href="https://www.youtube.com/KVBAG" target="_blank"><i class="fa fa-youtube-play" aria-hidden="true"></i></a><div class="tag">YouTube</div></li>
+            <li><a href="https://www.kvb.koeln/unternehmen/kontakt/index.html" style="font-weight: bold;">@</a><div class="tag">Kontakt</div></li>
+            <li><a href="https://blog.kvb-koeln.de" target="_blank" style="font-weight: bold;">B</a><div class="tag">KVB-Blog</div></li>
+            <li><a href="/service/newsletter/"><i class="fa fa-envelope-o"></i></a></a><div class="tag">Newsletter</div></li>
+        </ul>
+    </div>
+</header>
+
+
+<div class="topimage image section">
+</div>
+
+<div class="container">
+
+    <div id="breadcrumbs">
+        <ol itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="breadcrumb">
+            <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/" title="Startseite" itemprop="url"><span itemprop="title">Startseite</span></a></li><li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/fahrtinfo/" title="Fahrtinfo" itemprop="url"><span itemprop="title">Fahrtinfo</span></a></li><li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/fahrtinfo/betriebslage/" title="Betriebslage" itemprop="url"><span itemprop="title">Betriebslage</span></a></li><li itemscope itemtype="http://data-vocabulary.org/Breadcrumb" class="active"><span itemprop="title">Bus</span></li></ol>
+    </div>      <h1>Fahrgast-Informations-Anzeiger</h1>
+</div>
+
+<div class="container">
+</div>
+<div class="container section">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="modul">
+                <div><h2>Bereich Bus</h2><table class="table table-striped">
+
+                    <tr>
+                        <td><ul class="info-list"><li style="margin-right:5px;"><span class="number red-text">120</span></li></ul> Bauma&szlig;nahme im Bereich der (H) Dornstr. * Die Busse fahren zurzeit nicht den üblichen Linienweg * Die (H) Dornstr. in Richtung (H) Roggendorf kann zurzeit nicht angefahren werden *
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td><ul class="info-list"><li style="margin-right:5px;"><span class="number red-text">143</span></li></ul> Folgende Fahrt erfolgt ca. 10 Min. später * (H) Bocklemünd 18:22h - (H) Äu&szlig;ere Kanalstr. 18:32h - (H) Venloer Str. 18:41h - (H) Junkersdorf 18:58h - (H) Weiden Zentrum 19:22h - (H) Saarstr. 19:29h *
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+                        <td><ul class="info-list"><li style="margin-right:5px;"><span class="number red-text">145</span></li></ul> Folgende Fahrt entfällt * (H) Wilhelm-Leuschner-Str. 18:30h - (H) Frechen Rathaus 18:40h - (H) Weiden Zentrum 18:57h - (H) Bocklemünd 19:16h *
+                        </td>
+                    </tr>
+
+                </table></div></div>		</div>
+    </div>
+</div>
+
+<footer class="gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="/img/kvb_logo_g.png" alt="" class="img-responsive" style="max-width: 150px;">
             </div>
-            <div style="float:right;width:703px;">
-                <a href="/stadtplan/" title="Stadtplan" style="padding-right:14px;"><img src="http://1.1.1.1/bmi/www.kvb-koeln.de/images/tpl/menue_stadtplan.jpg" width="80" height="37" alt="Stadtplan" title="Stadtplan" class="floatleft" style="margin-top:-2px;" /></a>
-                <a href="/german/ausschreibungen/index.html" class="submenue floatleft" style="font-weight:normal;padding-right:15px;" title="Presse">&raquo; Ausschreibungen</a>
-                <img src="http://1.1.1.3/bmi/www.kvb-koeln.de/images/tpl/text_size.png" usemap="#textsize" width="51" height="18" alt="" title="" class="submenue floatleft" style="float:right;margin-top:5px;" />
-                <map id="textsize" name="textsize">
-                    <area shape="rect" href="#" coords="5,0,20,18" onclick="javascript:textSize(0);" title="Text kleiner" alt="Text kleiner" style="cursor:pointer;" />
-                    <area shape="rect" href="#" coords="22,0,40,18" onclick="javascript:textSize(1);" title="Text größer" alt="Text größer" style="cursor:pointer;" />
-                </map>
+            <div class="col-sm-4">
+                <a href="http://www.koelner-seilbahn.de/german/index.html" target="_blank" style="color: #333">K&ouml;lner Seilbahn</a> <br>
+                <a href="http://www.nord-sued-stadtbahn.de/" target="_blank" style="color: #333">Nord-S&uuml;d Stadtbahn</a> <br>
+                <a href="http://www.hsk-koeln.de/german/" target="_blank" style="color: #333">Stra&szlig;enbahn-Museum</a>
             </div>
-        </div>
-        <div id="wrapper">
-            <div id="menue">
-                <div id="menu">
-                    <div><ul>		<li><a href='/german/home/index.html' class='h1' >Home</a></li>
-                        <li><a href='/german/fahrplan/index.html' class='h1' >Fahrpläne und mehr</a></li>
-                        <li><a href='/german/tarif/index.html' class='h1' >Tarife und Tickets</a></li>
-                        <li><a href='/german/aktuelles/koelntakt.html' class='h1' target='_blank'>KölnTakt</a></li>
-                        <li><span class='h1'> </span></li>
-                        <li><span class='h1'> </span></li>
-                        <li><a href='http://www.koelner-seilbahn.de/german/index.html' class='h1' target='_blank'>Kölner Seilbahn</a></li>
-                        <li><a href='http://www.nord-sued-stadtbahn.de' class='h1' target='_blank'>Nord-Süd Stadtbahn</a></li>
-                        <li><a href='http://www.hsk-koeln.de' class='h1' target='_blank'>Straßenbahn-Museum</a></li>
-                    </ul></div>						<br />
-                    <div class="submenue font10" style="padding-left:10px;">
-                        <a href="http://www.stadt-koeln.de/wirtschaft/marke-koeln/" target="_blank"><img src="http://1.1.1.4/bmi/www.kvb-koeln.de/images/tpl/stadt-koeln.png" width="142" height="40" alt="Stadt K&ouml;ln" /></a>
-                        <br /><br />
-                        <a href="/german/sitemap/index.html" class="submenue font10" style="font-weight:normal;" title="Sitemap">Sitemap</a><br />
-                        <a href="/german/impressum.html" class="submenue font10" style="font-weight:normal;" title="Impressum">Impressum</a><br />
-                        &copy; KVB AG 2017				<br />
-                    </div>
-                </div>
-            </div>
-            <div id="content_wrapper">
-                <div id="content">
-                    <!-- content -->
-
-                    <div class="fliesstext mobile100pc">
-
-
-                        <div><span class="top_head_rot">Fahrgast-Informations-Anzeiger f&uuml;r den Bereich Bus</span><br />
-                            <table border='0' cellpadding='0' cellspacing='0' style='width:100%'>
-                                <tr><td><a name='0'></a></td></tr>
-                                <tr><td style='color:white;font-weight:bold'><span class='top_head_rot_small'>St&ouml;rungsmeldung</span></td></tr>
-                                <tr><td style='border:1px solid #df0a1e;padding:10px'>Linie 142 * Folgende Fahrt erfolgt ca. 10 Min. später * (H) Venloer Str. 12:10h - (H) Innere Kanalstr. 12:16h - (H) Wei&szlig;hausstr. 12:27h - (H) Chlodwigplatz 12:45h - (H) Ubierring 12:47h *</td></tr>
-                                <tr><td style='text-align:right'><!--<a href='#0' onclick="showAnz('0')">&raquo; Betroffene Haltestellen anzeigen</a> &nbsp;--></td></tr>
-                                <tr><td><div style='border:none; display:none' id='show_0'><table border='0' cellpadding='2' cellspacing='0' style='width:100%'>
-                                    <tr style='background-color:#ededed'><td valign='top' style='width:550px;padding-left:15px'>
-                                        Bf Ehrenfeld &rarr; Bf Lövenich
-                                    </td></tr><tr style='background-color:#ffffff'><td valign='top' style='width:550px;padding-left:15px'>
-                                    Pohligstr. &rarr; Südbahnhof
-                                </td></tr><tr style='background-color:#ededed'><td valign='top' style='width:550px;padding-left:15px'>
-                                    Venloer Str./Gürtel &rarr; Weinsbergstr./Gürtel
-                                </td></tr></table></div></td></tr></table><br />
-                            <table border='0' cellpadding='0' cellspacing='0' style='width:100%'>
-                                <tr><td><a name='1'></a></td></tr>
-                                <tr><td style='color:white;font-weight:bold'><span class='top_head_rot_small'>St&ouml;rungsmeldung</span></td></tr>
-                                <tr><td style='border:1px solid #df0a1e;padding:10px'>Linie 159 * Stra&szlig;ensperrung im Bereich Buchforststr. und Eythstr. * Die (H) Steinmetzstr. ist auf die Falkensteinstr. Hausnummer 1 verlegt *</td></tr>
-                                <tr><td style='text-align:right'><!--<a href='#1' onclick="showAnz('1')">&raquo; Betroffene Haltestellen anzeigen</a> &nbsp;--></td></tr>
-                                <tr><td><div style='border:none; display:none' id='show_1'><table border='0' cellpadding='2' cellspacing='0' style='width:100%'>
-                                    <tr style='background-color:#ffffff'><td valign='top' style='width:550px;padding-left:15px'>
-                                        Steinmetzstr. &rarr; Eythstr.
-                                    </td></tr></table></div></td></tr></table><br />&nbsp;<a href='#0'>&raquo; nach oben</a></div></div>
-
-                    <div id="mobil_impressum">
-                        <br style="clear:both;" />
-                        <br style="clear:both;" />
-                        <br style="clear:both;display:none;" class="mobileshow" />	<!--
-				&copy; KVB AG 2017 | <a href="/german/impressum.html" class="submenue font10" style="font-weight:normal;" title="Impressum">Impressum</a> | <a href="/german/downloads.html" class="submenue font10" style="font-weight:normal;" title="Downloads">Downloads</a>
-                <br /> -->
-                        <div style="margin-top:3%;">
-                            <center>
-                                <a href="https://www.facebook.com/kvb.ag" title="Facebook" class="submenue floatleft" style="font-weight:normal;padding:4px 5px 0 2px;" target="_blank"><img src="http://1.1.1.5/bmi/www.kvb-koeln.de/images/tpl/FB-f-Logo__blue_40.png" width="25" height="25" alt="Facebook" title="Facebook" style="padding-top: 2px;" /></a>
-                                <a href="http://www.youtube.com/KVBAG" title="YouTube" class="submenue floatleft" style="font-weight:normal;padding-right:7px;" target="_blank"><img src="http://1.1.1.1/bmi/www.kvb-koeln.de/images/tpl/youtube.png" width="59" height="25" alt="YouTube" title="YouTube" style="padding-top: 6px;" /></a>
-                                <a href="https://twitter.com/kvbag" title="Twitter" class="submenue floatleft" style="font-weight:normal;padding-right:0px;" target="_blank"><img src="http://1.1.1.3/bmi/www.kvb-koeln.de/images/tpl/menue_twitter_50px.png" width="40" height="40" alt="Twitter" title="Twitter" style="padding-top: 1px;" /></a>
-                            </center>
-                        </div>
-                        <br /><br />
-                    </div>
-                    <!-- /content -->
-                    <img src="http://1.1.1.3/bmi/www.kvb-koeln.de/images/tpl/leer.gif" alt="" width="1" height="1" />
-                </div>
-                <div id="sidebar_right">
-                    <div class="clear">
-                        <span class="top_head_rot">Fahrplanauskunft</span>
-                        <div class="sidebar_rechts_kasten">
-
-                            <iframe src="http://auskunft.kvb-koeln.de/kvb/kurzauskunft/kurzauskunft.html" style="width:180px;margin:0;padding:0;border:0;height:225px;margin-left:-5px;overflow-y:hidden;overflow-x:hidden;background:#e3e3e4;" frameborder="0" border="0" scrolling="no" allowtransparency="true"></iframe>			<div class="clear">
-                            <span style="display:block;padding-top:8px;">&nbsp;<a href="/german/fahrplan/minifahrplaene6.html" class="font11" style="font-family:Verdana;"><b>&raquo; Minifahrpläne</b></a></span>
-                            <span style="display:block;">&nbsp;<a href="/german/fahrplan/aushangfahrplaene6.html" class="font11" style="font-family:Verdana;"><b>&raquo; Aushangfahrpläne</b></a></span>
-                            <div class="div100 floatleft clear submenue padding_b3 font11">
-                                <br /><b>Haltestelle suchen</b>
-                            </div>
-                            <div class="div100 floatleft clear submenue padding_b3 font11">
-                                <form action="/german/hst/search/" method="post">
-                                    <input type="text" id="suggest1" name="code" value="" class="fp_hst_input" />
-                                    <input type="submit" value="Haltestellensuche starten" style="background-color:#FFFFFF;border: 1px solid #58595B;font-size:11px;font-family:Verdana;width:170px;display:block;text-align:center;margin-left:2px;margin-top:3px;margin-bottom:5px;clear:both;" />
-                                </form>
-                            </div>
-
-                        </div>
-                            <br style="clear:both;" />
-                        </div>
-                    </div>
-                    <span class="top_head_rot">Betriebslage</span>
-                    <div class="sidebar_rechts_kasten" style="border-bottom:8px solid #ffffff;">
-
-	<span class="linieninfos" style="position:absolute;width:300px;">
-        <span class="linieninfos" style="display:none;position:relative;z-index:5;top:-8px;left:-331px;width:300px;padding:10px;background-color:#fff;font-size:0.8rem;line-height:1rem;border:1px solid #ccc;border-radius:4px;">
-		</span>
-	</span>
-                        <span class="linieninfosbus" style="position:absolute;width:300px;">
-        <span class="linieninfosbus" style="display:none;position:relative;z-index:5;top:-8px;left:-331px;width:300px;padding:10px;background-color:#fff;font-size:0.8rem;line-height:1rem;border:1px solid #ccc;border-radius:4px;"><span class="linie_142"><b style="display:block;padding-bottom:0.5rem;padding-top:0.5rem;">Linie 142</b>Folgende Fahrt erfolgt ca. 10 Min. sp&auml;ter * (H) Venloer Str. 12:10h - (H) Innere Kanalstr. 12:16h - (H) Wei&szlig;hausstr. 12:27h - (H) Chlodwigplatz 12:45h - (H) Ubierring 12:47h *<br /><br /></span>
-		</span>
-	</span><div class="stoerungen" style="padding-top:0.5rem;">
-
-
-
-                        <strong style="font-size:0.8rem;">Bahn</strong> &nbsp; <a href="/german/home/mofis_bahn.html" class="rot bold font11" style="float:right;">&raquo; alle ansehen</a>
-                        <br />
-                        <div style="font-size:0.75rem;padding-top:0.65rem;">Derzeit keine Störungen im Bereich Stadtbahn.</div><br style="clear:both;" />
-                        <br style="clear:both;" />
-                        <strong style="font-size:0.8rem;">Bus</strong> &nbsp; <a href="/german/home/mofis_bus.html" class="rot bold font11" style="float:right;">&raquo; alle ansehen</a>
-                        <br />
-                        <div class="zeigeliniebus" style="cursor:pointer;float:left;display:block;border:1px solid #bbb;background-color:#fff;border-radius:4px;padding:0.25rem 0.3rem 0.25rem 0.3rem;margin:0.5rem 0.5rem 0 0;font-size:0.75rem;font-weight:bold;">142</div>                        <br style="clear:both;" />
-                    </div>
-                        <br />
-                        <a class="rot bold font11" href="/german/aktuelles/betriebslage/aufzuege.html">&raquo; Aktuelle Aufzugst&ouml;rungen</a>
-                        <br />
-                        <br />
-                        <a class="rot bold font11" target="_blank" href="https://twitter.com/kvb_info">&raquo; Betriebslage auf Twitter</a>
-                    </div>
-
-                    <div style="border-bottom:8px solid #ffffff;">
-                        <div class="top_head_rot">Infrastruktur</div>
-                        <div class="sidebar_rechts_kasten font10" style="margin-bottom:0;border-bottom: 0px;">
-                            <center><a href="http://www.damit-deutschland-vorne-bleibt.de" target="_blank"><img src="http://1.1.1.2/bmi/www.kvb-koeln.de/images/tpl/ddvb.png" width="180" height="80" alt="Damit Deutschland vorne bleibt - Initiative für eine zukunftsfähige Infrastruktur" style="padding-bottom:5px;border-bottom:1px dotted #000000;" /></a>
-                            </center>
-                        </div>
-                        <iframe src="http://www.damit-deutschland-vorne-bleibt.de/newsfeed-kvb.aspx?max=2" width="190" height="160" name="Infrastruktur" frameborder="0" marginheight="0" marginwidth="0" scrolling="no" style="width:190px;clear:none;"></iframe>
-                    </div>
-
-                    <div>
-                        <span class="top_head_blau">VDV</span>
-                        <div class="sidebar_rechts_kasten font10" style="margin-bottom:0;border-bottom: 0px;">
-                            <iframe src="http://www.vdv.de/aktuelles--teaser-kvb-koeln.aspx" width="180" height="300" name="VDV" frameborder="0" marginheight="0" marginwidth="0" scrolling="no" style="width:180px;clear:none;"></iframe>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-sm-4">
+                <a href="https://www.vdv.de/" target="_blank" style="color: #333">VDV</a><br>
+                <a href="http://www.uitp.org/" target="_blank" style="color: #333">UITP</a><br>
+                <a href="http://www.mobilityinside.de/" target="_blank" style="color: #333">Mobility Inside</a>
             </div>
         </div>
-        <div id="footer">
-            <a href="/german/impressum.html">&copy; KVB AG 2016</a>
-            <a href="/german/datenschutz/">Datenschutz</a>
-            <a href="/german/impressum.html">Impressum</a>
-            <a href="/german/downloads.html">Downloads</a>
-            <a href="/german/adressen.html">Adressen</a>
+        <hr>
+        <div class="row" id="nav-footer">
+            <div class="col-xs-12">
+                <ul class="nav navbar-right">
+                    <li class="visible-xs"><a href="/unternehmen/kontakt/index.html">Kontakt</a></li>
+                    <li class="visible-xs"><a href="/unternehmen/presse/index.html">Presse</a></li>
+                    <li class="visible-xs"><a href="/unternehmen/karriere/index.html">Karriere</a></li>
+                    <li><a href="/unternehmen/datenschutz/index.html">Datenschutz</a></li>
+                    <li><a href="/unternehmen/impressum.html">Impressum</a></li>
+                    <li><a href="/unternehmen/kontakt/ausschreibungen.html">Ausschreibungen</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-    <form name="printform" action="" method="post" target="PRINTFENSTER">
-        <input type="hidden" name="PRINT" value="1" />
-        <input type="hidden" name="PRINTTEMPLATE" value="" />
-        <input type="hidden" name="service" value="Links" />
-        <input type="hidden" name="curl" value="" />
-    </form>
-</center>
+</footer>    <div id="btn-scroll-up">
+    <a href="#"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+</div>
 
 </body>
 </html>

@@ -6,6 +6,7 @@ import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import de.philippst.alexa.kvb.exception.KvbException;
 import de.philippst.alexa.kvb.model.KvbStation;
+import de.philippst.alexa.kvb.model.KvbDisruption;
 import de.philippst.alexa.kvb.utils.KvbStationDomExtractor;
 import org.apache.http.client.utils.URIBuilder;
 import org.jsoup.Jsoup;
@@ -46,11 +47,13 @@ public class StationService {
         if(stationId == 0) throw new KvbException("Invalid kvb station id");
 
         URI uri = new URIBuilder()
-                .setScheme("http")
-                .setHost("www.kvb-koeln.de")
+                .setScheme("https")
+                .setHost("kvb.koeln")
                 .setPath("/qr/"+stationId).build();
 
-        Document dom = Jsoup.parse(uri.toURL(),1000);
+        logger.info("Request KVB Station: {}",uri);
+
+        Document dom = Jsoup.parse(uri.toURL(),1000*5);
 
         KvbStation kvbStation = new KvbStation();
         kvbStation.setTitle(KvbStationDomExtractor.getStationTitle(dom));
@@ -59,9 +62,11 @@ public class StationService {
         return kvbStation;
     }
 
-    public List<String> getGlobalDisruptionMessages(boolean bus) throws IOException {
-        String url = "http://www.kvb-koeln.de/german/home/mofis_bahn.html";
-        if(bus) url = "http://www.kvb-koeln.de/german/home/mofis_bus.html";
+    public List<KvbDisruption> getGlobalDisruptionMessages(boolean bus) throws IOException {
+        String url = "https://kvb.koeln/fahrtinfo/betriebslage/bahn/";
+        if(bus) url = "https://kvb.koeln/fahrtinfo/betriebslage/bus/";
+
+        logger.info("Request KVB Disruptions: {}",url);
 
         Document dom = Jsoup.parse(new URL(url).openStream(),"ISO-8859-1",url);
         return KvbStationDomExtractor.getGlobalDisruptionMessage(dom);
@@ -70,7 +75,9 @@ public class StationService {
     @SuppressWarnings("unused")
     public HashMap<String,Integer> getStations() throws KvbException, IOException {
 
-        String url = "http://www.kvb-koeln.de/german/mofis/mofis.html";
+        String url = "https://www.kvb.koeln/haltestellen/index.html";
+        logger.info("Request KVB Stations: {}",url);
+
         Document dom = Jsoup.parse(new URL(url).openStream(),"ISO-8859-1",url);
 
         Elements elements = dom.select("#content > div.fliesstext.mobile100pc > div > div > table > tbody > tr a");

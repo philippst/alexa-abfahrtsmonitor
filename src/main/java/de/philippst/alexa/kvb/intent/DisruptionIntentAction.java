@@ -14,6 +14,7 @@ import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.SimpleCard;
 import com.amazon.speech.ui.SsmlOutputSpeech;
 import com.google.common.base.Joiner;
+import de.philippst.alexa.kvb.model.KvbDisruption;
 import de.philippst.alexa.kvb.service.StationService;
 import de.philippst.alexa.kvb.utils.AlexaSkillKitHelper;
 import de.philippst.alexa.kvb.utils.TextToSpeechHelper;
@@ -42,7 +43,7 @@ public class DisruptionIntentAction implements IntentAction {
     public SpeechletResponse perform(final IntentRequest intentRequest, final Session session, final Context context) {
 
         Intent intent = intentRequest.getIntent();
-        List<String> disruptions;
+        List<KvbDisruption> disruptions;
 
         try {
             if(intent.getName().equals("DisruptionBus")){
@@ -57,7 +58,7 @@ public class DisruptionIntentAction implements IntentAction {
                 StringBuilder stringBuilder = new StringBuilder();
 
                 disruptions.forEach(disruptionMessage ->
-                    stringBuilder.append(" ").append(TextToSpeechHelper.disruptionSSML(disruptionMessage))
+                    stringBuilder.append(" ").append(TextToSpeechHelper.disruptionSSML(disruptionMessage.toString()))
                 );
 
                 String textString = stringBuilder.toString();
@@ -83,14 +84,14 @@ public class DisruptionIntentAction implements IntentAction {
 
     }
 
-    private SimpleCard getDisruptionCard(List<String> disruptionMessages){
+    private SimpleCard getDisruptionCard(List<KvbDisruption> disruptionMessages){
         SimpleCard simpleCard = new SimpleCard();
         simpleCard.setTitle("Störungen");
         simpleCard.setContent(Joiner.on(" \n").join(disruptionMessages));
         return simpleCard;
     }
 
-    private RenderTemplateDirective getDisruptionRenderTemplate(List<String> disruptionMessages){
+    private RenderTemplateDirective getDisruptionRenderTemplate(List<KvbDisruption> disruptionMessages){
 
         StringBuilder stringBuilder = new StringBuilder();
 

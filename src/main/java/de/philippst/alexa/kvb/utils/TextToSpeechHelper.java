@@ -9,6 +9,7 @@ public class TextToSpeechHelper {
             .replace("(H)", "")
             .replace(" Str. ", " Straße ")
             .replace("Bad Godesb.", "Bad Godesberg")
+            .replace("Wir werden die verspäteten Bahnen schnellstmöglich wieder nach Fahrplan für Sie einsetzen *", "")
             .replace(" *", "<break strength=\"medium\" />")
             .replace(" - ", "<break strength=\"medium\" />");
 

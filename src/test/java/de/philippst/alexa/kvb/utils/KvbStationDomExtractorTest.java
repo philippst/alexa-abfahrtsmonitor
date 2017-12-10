@@ -1,6 +1,7 @@
 package de.philippst.alexa.kvb.utils;
 
 import de.philippst.alexa.kvb.exception.KvbException;
+import de.philippst.alexa.kvb.model.KvbDisruption;
 import de.philippst.alexa.kvb.model.KvbStationDeparture;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,7 +21,7 @@ public class KvbStationDomExtractorTest {
 
     @Test
     public void getStationTitle() throws Exception {
-        Document dom = Jsoup.parse(getResourceFile("station-departures.html"),"utf-8");
+        Document dom = Jsoup.parse(getResourceFile("station-departures-disruption.html"),"utf-8");
         String stationTitel = KvbStationDomExtractor.getStationTitle(dom);
         assertEquals("Leyendeckerstr.",stationTitel);
     }
@@ -51,8 +52,8 @@ public class KvbStationDomExtractorTest {
         Document dom = Jsoup.parse(getResourceFile("station-departures-disruptions.html"),"utf-8");
         List<String> stationDisruptionMessage = KvbStationDomExtractor.getDisruptionMessage(dom);
         List<String> actual = Arrays.asList(
-                "Linie 3 * Folgende Fahrt entfällt * (H) Thielenbruch 19:06h *",
-                "Linie 18 * Folgende Fahrt entfällt * (H) Thielenbruch 15:08h *");
+                "Linie 18 * Folgende Fahrt entfällt * (H) Klettenbergpark 14:09h *",
+                "Linie 18 * Folgende Fahrt entfällt * (H) Klettenbergpark 14:09h *");
         assertEquals(actual,stationDisruptionMessage);
     }
 
@@ -60,7 +61,7 @@ public class KvbStationDomExtractorTest {
     public void getDepartures() throws Exception {
         Document dom = Jsoup.parse(getResourceFile("station-departures.html"),"utf-8");
         List<KvbStationDeparture> departures = KvbStationDomExtractor.getDepartures(dom);
-        assertEquals(4,departures.size());
+        assertEquals(50,departures.size());
     }
 
     @Test
@@ -73,34 +74,44 @@ public class KvbStationDomExtractorTest {
     @Test
     public void getGlobalDisruptionsTrainNone() throws Exception {
         Document dom = Jsoup.parse(getResourceFile("disruptions-train-none.html"),"utf-8");
-        List<String> disruptionMessages = KvbStationDomExtractor.getGlobalDisruptionMessage(dom);
+        List<KvbDisruption> disruptionMessages = KvbStationDomExtractor.getGlobalDisruptionMessage(dom);
         assertEquals(0,disruptionMessages.size());
     }
 
     @Test
     public void getGlobalDisruptionsBusOne() throws Exception {
         Document dom = Jsoup.parse(getResourceFile("disruptions-bus-one.html"),"utf-8");
-        List<String> disruptionMessages = KvbStationDomExtractor.getGlobalDisruptionMessage(dom);
+        List<KvbDisruption> disruptionMessages = KvbStationDomExtractor.getGlobalDisruptionMessage(dom);
         assertEquals(1,disruptionMessages.size());
-        List<String> actual = Arrays.asList("Linie 159 * Straßensperrung im Bereich Buchforststr. und Eythstr. *");
-        assertEquals(actual,disruptionMessages);
+        String actual =
+                "Linie 120 * Baumaßnahme im Bereich der (H) Dornstr. * Die Busse fahren zurzeit nicht den üblichen " +
+                        "Linienweg * Die (H) Dornstr. in Richtung (H) Roggendorf kann zurzeit nicht angefahren werden *";
+        assertEquals(actual,disruptionMessages.get(0).toString());
     }
 
     @Test
     public void getGlobalDisruptionsBusSeveral() throws Exception {
         Document dom = Jsoup.parse(getResourceFile("disruptions-bus-several.html"),"utf-8");
-        List<String> disruptionMessages = KvbStationDomExtractor.getGlobalDisruptionMessage(dom);
-        assertEquals(2,disruptionMessages.size());
+        List<KvbDisruption> disruptionMessages = KvbStationDomExtractor.getGlobalDisruptionMessage(dom);
+        assertEquals(3,disruptionMessages.size());
     }
 
     @Test
     public void getGlobalDisruptionsTrainOne() throws Exception {
         Document dom = Jsoup.parse(getResourceFile("disruptions-train-one.html"),"utf-8");
-        List<String> disruptionMessages = KvbStationDomExtractor.getGlobalDisruptionMessage(dom);
+        List<KvbDisruption> disruptionMessages = KvbStationDomExtractor.getGlobalDisruptionMessage(dom);
         assertEquals(1,disruptionMessages.size());
-        List<String> actual = Arrays.asList(
-                "Linie 9 * Falschparker auf der Zülpicher Str. * Die Bahnen sind zurzeit an der Weiterfahrt gehindert *");
-        assertEquals(actual,disruptionMessages);
+        String actual =
+                "Linie 1 * Die Bahnen fahren zurzeit in unregelmäßigen Zeitabständen * Wir werden die verspäteten " +
+                        "Bahnen schnellstmöglich wieder nach Fahrplan für Sie einsetzen *";
+        assertEquals(actual,disruptionMessages.get(0).toString());
+    }
+
+    @Test
+    public void getGlobalDisruptionsTrainSeveral() throws Exception {
+        Document dom = Jsoup.parse(getResourceFile("disruptions-train-several.html"),"utf-8");
+        List<KvbDisruption> disruptionMessages = KvbStationDomExtractor.getGlobalDisruptionMessage(dom);
+        assertEquals(7,disruptionMessages.size());
     }
 
 }
