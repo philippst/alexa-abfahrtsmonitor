@@ -1,28 +1,13 @@
+
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="de"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="de"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="de"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="de"> <!--<![endif]-->
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>K&ouml;lner Verkehrs-Betriebe AG</title>
-    <meta name="author" content="Vipex Media Services GmbH | www.vipex.de | CMS: AdOvo www.adovo.de" />
-    <meta name="copyright" content="K&ouml,lner Verkehrs-Betriebe AG" />
-    <meta name="language" content="de" />
-    <meta name="robots" content="INDEX,FOLLOW" />
-    <meta name="page-topic" content="K&ouml,lner Verkehrs-Betriebe AG" />
-    <meta name="audience" content="Alle" />
-    <meta name="content-language" content="DE, deutsch" />
-    <meta name="revisit-after" content="2 days" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/slider-pro.min.css"/>
-    <link rel="stylesheet" href="/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="/css/main.css"/>
-    <script src="/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
 </head>
 
 <body>
@@ -37,10 +22,12 @@
             <li><a href="/unternehmen/presse/index.html">Presse</a></li>
             <li><a href="/unternehmen/karriere/index.html">Karriere</a></li>
             <!-- > <li><a href="#!"><img src="/img/flag-de.png" alt=""> DE <span class="caret"></span></a></li>   -->
-
-            <li style="float:right;" data-toggle="tooltip" title="QR-Code generieren" data-placement="left"><a href="#!?custom=true" rel="qrcode" style="padding-right:5px;"><i class="fa fa-qrcode" style="font-size:1.7rem;" aria-hidden="true"></i></a></li>
-            <li style="float:right;" data-toggle="tooltip" title="Seite drucken" data-placement="left"><a href="javascript:window.print();" class="print" title="Seite drucken" style="padding-right:5px;"><i class="fa fa-print" style="font-size:1.7rem;" aria-hidden="true"></i></a></li>
-
+            <li style="float:right;" data-toggle="tooltip" data-placement="left">
+                <a href="?custom=true" id="qrgenerieren" style="padding-right:5px;" aria-label="Einen QR-Code f&uuml;r diese Seite generieren"><i class="fa fa-qrcode" style="font-size:1.7rem;" aria-hidden="true"></i><span class="hidden">QR-Code generieren</span></a>
+            </li>
+            <li style="float:right;" data-toggle="tooltip" data-placement="left">
+                <a href="javascript:window.print();" class="print" aria-label="Diese Seite drucken" style="padding-right:5px;"><i class="fa fa-print" style="font-size:1.7rem;" aria-hidden="true"></i><span class="hidden">Seite drucken</span></a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -48,9 +35,9 @@
 <nav class="navbar red" id="nav-main">
     <div class="container">
         <div class="navbar-header">
-            <a href="/" class="kvb-logo visible-xs"><img src="/img/kvb_logo_w.png" alt=""></a>
+            <a href="/" class="kvb-logo visible-xs"><img src="/img/kvb_logo_w.png" alt="Startseite"></a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainnav-collapse" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only">Navigation ein-/ausblenden</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -58,13 +45,13 @@
         </div>
 
         <div class="collapse navbar-collapse" id="mainnav-collapse">
-            <a href="/" class="kvb-logo hidden-xs"><img src="/img/kvb_logo_w.png" alt=""></a>
+            <a href="/" class="kvb-logo hidden-xs"><img src="/img/kvb_logo_w.png" alt="Startseite"></a>
 
             <ul class="nav navbar-nav">
                 <!--<li class="visible-xs" style="text-align: right;"><a href="#!"><img src="/img/flag-de.png" alt=""> DE <span class="caret"></span></a></li>-->
                 <li class="dropdown">
                     <a href="/fahrtinfo/index.html" class="dropdown-link">Fahrtinfo</a>
-                    <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    <a href="" onclick="return false;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;" title="Fahrtinfo"><i class="fa fa-caret-down" aria-hidden="true"></i><span class="hidden">Untermen&uuml; zum Men&uuml;punkt - Fahrtinfo</span></a>
                     <ul class="dropdown-menu"><li><a href="/fahrtinfo/betriebslage/index.html">Aktuelle St&ouml;rungen</a></li>
                         <li><a href="https://auskunft.kvb-koeln.de/kvb/cgi">Fahrplanauskunft</a></li>
                         <li><a href="https://auskunft.kvb-koeln.de/kvb/cgi/page/eingabeHaltestellenfahrplan">Haltestellenauskunft</a></li>
@@ -79,7 +66,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="/tickets/index.html" class="dropdown-link">Tickets</a>
-                    <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    <a href="" onclick="return false;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;" title="Tickets"><i class="fa fa-caret-down" aria-hidden="true"></i><span class="hidden">Untermen&uuml; zum Men&uuml;punkt - Tickets</span></a>
                     <ul class="dropdown-menu"><li><a href="/tickets/welches_ticket/index.html">Welches Ticket brauche ich?</a></li>
                         <li><a href="/tickets/ticketkauf/index.html">Wo kann ich ein Ticket kaufen?</a></li>
                         <li><a href="/tickets/tarifgebiete/index.html">Tarifgebiete</a></li>
@@ -88,56 +75,60 @@
                 </li>
                 <li class="dropdown">
                     <a href="/service/index.html" class="dropdown-link">Service</a>
-                    <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    <a href="" onclick="return false;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;" title="Service"><i class="fa fa-caret-down" aria-hidden="true"></i><span class="hidden">Untermen&uuml; zum Men&uuml;punkt - Service</span></a>
                     <ul class="dropdown-menu"><li><a href="/service/ast_und_taxibus.html">AST & TaxiBus</a></li>
                         <li><a href="/service/barrierefreiheit.html">Barrierefreiheit</a></li>
                         <li><a href="/service/carsharing/index.html">Carsharing</a></li>
                         <li><a href="/service/kvb-rad.html">KVB-Rad</a></li>
                         <li><a href="/service/mobigarantie.html">Mobilit&auml;tsgarantie</a></li>
+                        <li><a href="/service/mobilitaetsmanagement/index.html">Mobilit&auml;tsmanagement</a></li>
+                        <li><a href="/service/neubuerger.html">Neu in Köln?</a></li>
                         <li><a href="/service/park_and_ride.html">Park/Bike & Ride</a></li>
                         <li><a href="/service/spielregeln/index.html">Spielregeln</a></li>
+                        <li><a href="/service/vrs-befragung_2018.html">VRS-Verkehrsbefragung</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="/unternehmen/index.html" class="dropdown-link">Unternehmen</a>
-                    <a href="#!" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                    <a href="" onclick="return false;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="cursor:pointer;" title="Unternehmen"><i class="fa fa-caret-down" aria-hidden="true"></i><span class="hidden">Untermen&uuml; zum Men&uuml;punkt - Unternehmen</span></a>
                     <ul class="dropdown-menu"><li><a href="/unternehmen/compliance/index.html">Compliance</a></li>
                         <li><a href="/unternehmen/geschichte/index.html">Geschichte</a></li>
                         <li><a href="/unternehmen/karriere/index.html">Karriere</a></li>
                         <li><a href="/unternehmen/seilbahn.html">K&ouml;lner Seilbahn</a></li>
                         <li><a href="/unternehmen/kontakt/index.html">Kontakt</a></li>
                         <li><a href="/unternehmen/nord-sued-stadtbahn.html">Nord-S&uuml;d-Stadtbahn K&ouml;ln</a></li>
-                        <li><a href="/unternehmen/presse/index.html">Print und Presse</a></li>
+                        <li><a href="/unternehmen/presse/index.html">Presse</a></li>
                         <li><a href="/unternehmen/museum_thielenbruch.html">Stra&szlig;enbahn-Museum Thielenbruch</a></li>
                         <li><a href="/unternehmen/die_kvb/index.html">Wir sind die KVB</a></li>
                     </ul>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#!" class="search-link"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                <div class="container-search">
+                <li><a href="javascript:void(0);" class="search-link" title="Suchfeld anzeigen"><i class="fa fa-search"></i><span class="hidden">Suche</span></a></li>
+                <li><div class="container-search">
                     <div class="input-group">
                         <form method="post" action="/suche/" id="searchForm">
-                            <input type="text" class="form-control" placeholder="Suchbegriff eingeben..." name="SEARCHSTRING" aria-describedby="basic-addon1">
+                            <label for="suchfeld" style="display:none;">Suchbegriff eingeben</label>
+                            <input type="text" class="form-control" id="suchfeld" placeholder="Suchbegriff eingeben..." name="SEARCHSTRING" required="required" />
                             <input type="hidden" name="SEARCHSTARTPATH" value="/" />
                             <input type="submit" name="abschicken" value="&raquo; Suchen" style="display:none;" />
+                            <button  class="fa fa-search" style="line-height: 2.2rem;" aria-label="Suche starten"><span class="hidden">Suchen</span></button>
                         </form>
-                        <span class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></span>
                     </div>
-                </div>
+                </div></li>
             </ul>
         </div>
     </div>
 </nav>    <header>
     <div class="container-sm hidden-xs">
         <ul class="nav navbar-nav" style="opacity:0.85;">
-            <li><a href="https://www.facebook.com/KVB.AG/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a><div class="tag">Facebook</div></li>
-            <li><a href="https://twitter.com/kvbag" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a><div class="tag">Twitter</div></li>
-            <li><a href="https://www.instagram.com/kvbag/" target="_blank"<i class="fa fa-instagram" aria-hidden="true"></i></a><div class="tag">Instagram</div></li>
-            <li><a href="https://www.youtube.com/KVBAG" target="_blank"><i class="fa fa-youtube-play" aria-hidden="true"></i></a><div class="tag">YouTube</div></li>
-            <li><a href="https://www.kvb.koeln/unternehmen/kontakt/index.html" style="font-weight: bold;">@</a><div class="tag">Kontakt</div></li>
-            <li><a href="https://blog.kvb-koeln.de" target="_blank" style="font-weight: bold;">B</a><div class="tag">KVB-Blog</div></li>
-            <li><a href="/service/newsletter/"><i class="fa fa-envelope-o"></i></a></a><div class="tag">Newsletter</div></li>
+            <li><a href="https://www.facebook.com/KVB.AG/" target="_blank" title="Externer Link: Link auf den Facebook-Account der KVB"><i class="fa fa-facebook" aria-hidden="true"></i><span class="hidden">Facebook</span></a><div class="tag">Facebook</div></li>
+            <li><a href="https://twitter.com/kvbag" target="_blank" title="Externer Link: Link auf den Twitter-Account der KVB"><i class="fa fa-twitter" aria-hidden="true"></i><span class="hidden">Twitter</span></a><div class="tag">Twitter</div></li>
+            <li><a href="https://www.instagram.com/kvbag/" target="_blank" title="Externer Link: Link auf den Instagram-Account der KVB"><i class="fa fa-instagram" aria-hidden="true"></i><span class="hidden">Instagram</span></a><div class="tag">Instagram</div></li>
+            <li><a href="https://www.youtube.com/KVBAG" target="_blank" title="Externer Link: Link auf den YouTube-Account der KVB"><i class="fa fa-youtube-play" aria-hidden="true"></i><span class="hidden">YouTube</span></a><div class="tag">YouTube</div></li>
+            <li><a href="https://www.kvb.koeln/unternehmen/kontakt/index.html" style="font-weight: bold;" title="Kontakt">@</a><div class="tag">Kontakt</div></li>
+            <li><a href="https://blog.kvb-koeln.de" target="_blank" style="font-weight: bold;" title="Externer Link: Link auf den KVB-Blog">B</a><div class="tag">KVB-Blog</div></li>
+            <li><a href="/service/newsletter/" title="Melden Sie sich zum KVB-Newsletter an"><i class="fa fa-envelope-o"></i><span class="hidden">Newsletter</span></a><div class="tag">Newsletter</div></li>
         </ul>
     </div>
 </header>
@@ -163,49 +154,12 @@
                 <div><h2>Bereich Stadtbahn</h2><table class="table table-striped">
 
                     <tr>
-                        <td><ul class="info-list"><li style="margin-right:5px;"><span class="number red-text">1</span></li></ul> Die Bahnen fahren zurzeit in unregelmä&szlig;igen Zeitabständen * Wir werden die verspäteten Bahnen schnellstmöglich wieder nach Fahrplan für Sie einsetzen *
+                        <td><ul class="info-list"><li style="margin-right:5px;"><span class="number red-text">16</span></li></ul> Folgende Fahrt entfällt * (H) Sebastianstr. 20:53h - (H) Amsterdamer Str. 20:56h - (H) Reichenspergerpl. 21:00h - (H) Ebertplatz 21:03h - (H) Dom/Hbf 21:05h - (H) Neumarkt 21:09h - (H) Barbarossaplatz 21:12h - (H) Eifelstr. 21:14h - (H) Chlodwigplatz 21:18h - (H) Ubierring 21:20h - (H) Bayenthalgürtel 21:24h - (H) Wesseling 21:38h *
                         </td>
                     </tr>
 
-
-
                     <tr>
-                        <td><ul class="info-list"><li style="margin-right:5px;"><span class="number red-text">12</span></li></ul> Folgende Fahrt entfällt * (H) Merkenich 18:23h - (H) Niehl 18:33h - (H) Wilhelm-Sollmann-Str. 18:36h - (H) Neusser Str. 18:41h - (H) Ebertplatz 18:49h - (H) Rudolfplatz 18:55h - (H) Barbarossaplatz 18:58h - (H) Eifelstr. 19:00h - (H) Zollstock Südfriedhof 19:09h *
-                        </td>
-                    </tr>
-
-
-
-                    <tr>
-                        <td><ul class="info-list"><li style="margin-right:5px;"><span class="number red-text">18</span></li></ul> Folgende Fahrt entfällt * (H) Klettenbergpark 18:26h - (H) Barbarossaplatz 18:38h - (H) Neumarkt 18:41h - (H) Dom/Hbf 18:44h - (H) Ebertplatz 18:47h - (H) Reichenspergerpl. 18:48h - (H) Wiener Platz 18:55h - (H) Herler Str. 18:58h *
-                        </td>
-                    </tr>
-
-
-
-                    <tr>
-                        <td><ul class="info-list"><li style="margin-right:5px;"><span class="number red-text">3</span></li></ul> Folgende Fahrt entfällt * (H) Ollenhauerring 18:56h - (H) Bocklemünd 18:59h - (H) Äu&szlig;ere Kanalstr. 19:04h *
-                        </td>
-                    </tr>
-
-
-
-                    <tr>
-                        <td><ul class="info-list"><li style="margin-right:5px;"><span class="number red-text">3</span></li></ul> Folgende Fahrt erfolgt ca. 17 Min. später * (H) Bf Deutz/LANXESS arena 18:13h - (H) Neumarkt 18:21h - (H) Friesenplatz 18:25h - (H) Venloer Str. 18:30h - (H) Äu&szlig;ere Kanalstr. 18:33h *
-                        </td>
-                    </tr>
-
-
-
-                    <tr>
-                        <td><ul class="info-list"><li style="margin-right:5px;"><span class="number red-text">4</span></li></ul> Folgende Fahrt entfällt * (H) Bocklemünd 18:51h - (H) Äu&szlig;ere Kanalstr. 18:56h - (H) Venloer Str. 18:58h - (H) Friesenplatz 19:03h - (H) Neumarkt 19:07h - (H) BF Deutz/LANXESS arena 19:15h - (H) Stegerwaldsiedlung 19:19h - (H) Wiener Platz 19:23h - (H) Berliner Str. 19:27h - (H) Leuchterstr. 19:32h - (H) Schlebusch 19:37h *
-                        </td>
-                    </tr>
-
-
-
-                    <tr>
-                        <td><ul class="info-list"><li style="margin-right:5px;"><span class="number red-text">7</span></li></ul> Folgende Fahrt entfällt * (H) Dürener Str. 18:25h - (H) Haus Vorst 18:35h - (H) Frechen-Benzelrath 18:45h *
+                        <td><ul class="info-list"><li style="margin-right:5px;"><span class="number red-text">18</span></li></ul> Folgende Fahrt entfällt * (H) Thielenbruch 20:36h - (H) Vischeringstr. 20:42h - (H) Herler Str. 20:45h - (H) Wiener Platz 20:48h - (H) Reichenspergerpl. 20:54h - (H) Ebertplatz 20:57h - (H) Dom/Hbf 20:59h - (H) Neumarkt 21:03h - (H) Barbarossaplatz 21:07h - (H) Klettenbergpark 21:18h - (H) Hürt-Hermülheim 21:24h *
                         </td>
                     </tr>
 
@@ -245,7 +199,7 @@
         </div>
     </div>
 </footer>    <div id="btn-scroll-up">
-    <a href="#"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+    <a href="#"><i class="fa fa-arrow-up" aria-hidden="true" title="zum Anfang der Seite springen"></i><span class="hidden">nach oben</span></a>
 </div>
 
 </body>

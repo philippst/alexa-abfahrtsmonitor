@@ -6,14 +6,11 @@ import com.amazon.speech.speechlet.IntentRequest;
 import com.amazon.speech.speechlet.Session;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.speechlet.interfaces.display.directive.RenderTemplateDirective;
-import com.amazon.speech.speechlet.interfaces.display.element.PlainText;
 import com.amazon.speech.speechlet.interfaces.display.element.RichText;
 import com.amazon.speech.speechlet.interfaces.display.template.BodyTemplate1;
-import com.amazon.speech.speechlet.interfaces.display.template.ListTemplate1;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.SimpleCard;
 import com.amazon.speech.ui.SsmlOutputSpeech;
-import com.google.common.base.Joiner;
 import de.philippst.alexa.kvb.model.KvbDisruption;
 import de.philippst.alexa.kvb.service.StationService;
 import de.philippst.alexa.kvb.utils.AlexaSkillKitHelper;
@@ -23,10 +20,10 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.net.URISyntaxException;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DisruptionIntentAction implements IntentAction {
 
@@ -76,7 +73,7 @@ public class DisruptionIntentAction implements IntentAction {
                 speech.setText("Es liegen aktuell keine Störungen vor.");
                 return SpeechletResponse.newTellResponse(speech);
             }
-        } catch (IOException e) {
+        } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
 
@@ -87,7 +84,9 @@ public class DisruptionIntentAction implements IntentAction {
     private SimpleCard getDisruptionCard(List<KvbDisruption> disruptionMessages){
         SimpleCard simpleCard = new SimpleCard();
         simpleCard.setTitle("Störungen");
-        simpleCard.setContent(Joiner.on(" \n").join(disruptionMessages));
+        simpleCard.setContent(
+                disruptionMessages.stream().map(KvbDisruption::toString).collect(Collectors.joining(" \n"))
+        );
         return simpleCard;
     }
 
@@ -95,8 +94,13 @@ public class DisruptionIntentAction implements IntentAction {
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append("<font size=\"3\">")
-                .append(Joiner.on("<br /><br />").join(disruptionMessages))
+        stringBuilder
+                .append("<font size=\"3\">")
+                .append(disruptionMessages
+                            .stream()
+                            .map(KvbDisruption::toString)
+                            .collect(Collectors.joining("<br /><br />"))
+                )
                 .append("</font>");
 
         RichText richText = new RichText();

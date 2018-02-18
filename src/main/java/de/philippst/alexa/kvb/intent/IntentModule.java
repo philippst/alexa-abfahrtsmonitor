@@ -1,28 +1,59 @@
 package de.philippst.alexa.kvb.intent;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.multibindings.MapBinder;
+import dagger.Module;
+import dagger.Provides;
+import dagger.multibindings.IntoMap;
+import dagger.multibindings.StringKey;
 
-public class IntentModule extends AbstractModule {
-    @Override
-    protected void configure() {
+@Module
+public class IntentModule {
 
-        MapBinder<String, IntentAction> mapBinder = MapBinder.newMapBinder(binder(), String.class, IntentAction.class);
-
-        // Amazon intents
-        mapBinder.addBinding("AMAZON.HelpIntent").to(AmazonHelpIntentAction.class);
-        mapBinder.addBinding("AMAZON.StartOverIntent").to(AmazonHelpIntentAction.class);
-        mapBinder.addBinding("AMAZON.StopIntent").to(AmazonStopIntentAction.class);
-        mapBinder.addBinding("AMAZON.CancelIntent").to(AmazonStopIntentAction.class);
-
-        mapBinder.addBinding("AMAZON.YesIntent").to(HearMoreIntentAction.class);
-        mapBinder.addBinding("AMAZON.NoIntent").to(AmazonStopIntentAction.class);
-
-        // custom intents
-        mapBinder.addBinding("DisruptionTrain").to(DisruptionIntentAction.class);
-        mapBinder.addBinding("DisruptionBus").to(DisruptionIntentAction.class);
-        mapBinder.addBinding("GetStationAbfahrtsdaten").to(DepartureIntentAction.class);
-        mapBinder.addBinding("WelcomeIntent").to(WelcomeIntentAction.class);
-
+    @Provides @IntoMap
+    @StringKey("AMAZON.HelpIntent")
+    IntentAction providesAmazonHelpIntentAction(AmazonHelpIntentAction amazonHelpIntentAction) {
+        return amazonHelpIntentAction;
     }
+
+    @Provides @IntoMap
+    @StringKey("AMAZON.StopIntent")
+    IntentAction providesAmazonStopIntentAction(AmazonStopIntentAction amazonStopIntentAction) {
+        return amazonStopIntentAction;
+    }
+
+    @Provides @IntoMap
+    @StringKey("HearMoreIntent")
+    IntentAction providesHearMoreIntentAction(HearMoreIntentAction hearMoreIntentAction) {
+        return hearMoreIntentAction;
+    }
+
+    @Provides @IntoMap
+    @StringKey("DisruptionIntent")
+    IntentAction providesDisruptionIntentAction(DisruptionIntentAction disruptionIntentAction) {
+        return disruptionIntentAction;
+    }
+
+    @Provides @IntoMap
+    @StringKey("DisruptionTrain")
+    IntentAction providesDisruptionTrainAction(DisruptionIntentAction disruptionIntentAction) {
+        return disruptionIntentAction;
+    }
+
+    @Provides @IntoMap
+    @StringKey("DisruptionBus")
+    IntentAction providesDisruptionBusAction(DisruptionIntentAction disruptionIntentAction) {
+        return disruptionIntentAction;
+    }
+
+    @Provides @IntoMap
+    @StringKey("GetStationAbfahrtsdaten")
+    IntentAction providesDepartureIntentAction(DepartureIntentAction departureIntentAction) {
+        return departureIntentAction;
+    }
+
+    @Provides @IntoMap
+    @StringKey("WelcomeIntent")
+    IntentAction providesWelcomeIntentAction(WelcomeIntentAction welcomeIntent) {
+        return welcomeIntent;
+    }
+
 }

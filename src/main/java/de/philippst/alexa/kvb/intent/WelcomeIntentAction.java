@@ -8,7 +8,14 @@ import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SsmlOutputSpeech;
 
+import javax.inject.Inject;
+
 public class WelcomeIntentAction implements IntentAction {
+
+    @Inject
+    public WelcomeIntentAction() {
+    }
+
     @Override
     public SpeechletResponse perform(IntentRequest intent, Session session, Context context) {
         String helpText = "" +
@@ -20,7 +27,7 @@ public class WelcomeIntentAction implements IntentAction {
 
         // Create reprompt
         PlainTextOutputSpeech repromptSpeech = new PlainTextOutputSpeech();
-        repromptSpeech.setText("Sage Abfahrt, Störungen, Hilfe oder Stopp.");
+        repromptSpeech.setText("Sage Abfahrt, Störungen, Hilfe oder Stop.");
         Reprompt reprompt = new Reprompt();
         reprompt.setOutputSpeech(repromptSpeech);
 

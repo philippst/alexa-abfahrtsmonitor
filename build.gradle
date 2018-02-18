@@ -1,0 +1,49 @@
+plugins {
+    id "net.ltgt.apt" version "0.14"
+}
+
+apply plugin: 'java'
+
+group = 'de.philippst.alexa'
+version = '1.1'
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile (
+            'com.amazonaws:aws-lambda-java-core:1.2.0',
+            'com.amazon.alexa:alexa-skills-kit:1.8.1',
+            'org.jsoup:jsoup:1.11.2',
+            'com.amazonaws:aws-lambda-java-log4j:1.0.0',
+            'org.slf4j:slf4j-log4j12:1.7.25',
+            'org.slf4j:jcl-over-slf4j:1.7.25',
+            'com.google.dagger:dagger:2.14.1'
+    )
+
+    compile ('com.amazonaws:aws-java-sdk-dynamodb:1.11.280') {
+        exclude module: 'commons-logging'
+    }
+
+    testCompile (
+            'org.junit.jupiter:junit-jupiter-engine:5.0.3'
+    )
+    annotationProcessor (
+            'com.google.dagger:dagger-compiler:2.14.1'
+    )
+}
+
+task buildZip(type: Zip) {
+    from compileJava
+    from processResources
+    into('lib') {
+        from configurations.runtime
+    }
+}
+
+build.dependsOn buildZip

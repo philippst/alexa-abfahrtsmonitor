@@ -6,8 +6,11 @@ import com.amazon.speech.speechlet.Session;
 import com.amazon.speech.speechlet.SpeechletResponse;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 
+import javax.inject.Inject;
+
 public class AmazonStopIntentAction implements IntentAction{
 
+    @Inject
     protected AmazonStopIntentAction() { }
 
     @Override

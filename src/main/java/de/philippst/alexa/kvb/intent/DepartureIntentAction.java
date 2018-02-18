@@ -2,6 +2,10 @@ package de.philippst.alexa.kvb.intent;
 
 import com.amazon.speech.slu.Intent;
 import com.amazon.speech.slu.Slot;
+import com.amazon.speech.slu.entityresolution.Resolution;
+import com.amazon.speech.slu.entityresolution.StatusCode;
+import com.amazon.speech.slu.entityresolution.Value;
+import com.amazon.speech.slu.entityresolution.ValueWrapper;
 import com.amazon.speech.speechlet.Context;
 import com.amazon.speech.speechlet.IntentRequest;
 import com.amazon.speech.speechlet.Session;
@@ -14,20 +18,23 @@ import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
 import com.amazon.speech.ui.SsmlOutputSpeech;
-import com.google.common.base.Joiner;
 import de.philippst.alexa.kvb.exception.KvbException;
+import de.philippst.alexa.kvb.exception.StationResolutionException;
 import de.philippst.alexa.kvb.model.KvbStation;
 import de.philippst.alexa.kvb.model.KvbStationDeparture;
 import de.philippst.alexa.kvb.service.StationService;
 import de.philippst.alexa.kvb.service.UserService;
 import de.philippst.alexa.kvb.utils.AlexaSkillKitHelper;
+import de.philippst.alexa.kvb.utils.TextToSpeechHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.time.Duration;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class DepartureIntentAction implements IntentAction {
 
@@ -46,14 +53,14 @@ public class DepartureIntentAction implements IntentAction {
     public SpeechletResponse perform(final IntentRequest intentRequest, final Session session, final Context context) {
         Intent intent = intentRequest.getIntent();
         Slot slotStation = intent.getSlot("Station");
-
         Integer stationId = null;
-        if (slotStation != null && slotStation.getValue() != null) {
-            stationId = stationService.stationProcessor(slotStation.getValue());
-            if (stationId == null) {
-                return this.stationNotFoundResponse();
-            } else {
+
+        if (slotStation != null) {
+            try {
+                stationId = this.stationSlotResolution(slotStation);
                 userService.updateUserStation(session.getUser().getUserId(), stationId);
+            } catch (StationResolutionException e) {
+                return this.stationNotFoundResponse();
             }
         }
 
@@ -61,8 +68,16 @@ public class DepartureIntentAction implements IntentAction {
 
         if (stationId == null) return this.askStation();
 
-        logger.info("Processing stationId: {}", stationId);
-        return this.stationDepartureResponse(stationId, session, context);
+        Duration departureDuration = null;
+        Slot slotDuration = intent.getSlot("DepartureDuration");
+        if(slotDuration != null && slotDuration.getValue() != null){
+            Duration minDuration = Duration.parse(slotDuration.getValue());
+            if(minDuration.toMinutes() > 0 && minDuration.toMinutes() < 200)
+                departureDuration = minDuration;
+        }
+
+        logger.info("Processing stationId: {} duration: {}", stationId,departureDuration);
+        return this.stationDepartureResponse(stationId, session, context, departureDuration);
     }
 
     private SpeechletResponse stationNotFoundResponse(){
@@ -79,7 +94,8 @@ public class DepartureIntentAction implements IntentAction {
         return SpeechletResponse.newAskResponse(speech, reprompt);
     }
 
-    private SpeechletResponse stationDepartureResponse(Integer stationId, final Session session, Context context) {
+    private SpeechletResponse stationDepartureResponse(Integer stationId, final Session session, Context context,
+                                                       Duration minDuration) {
         logger.info("getStationDepartureResponse id: {}", stationId);
 
         try {
@@ -88,18 +104,31 @@ public class DepartureIntentAction implements IntentAction {
 
             StringBuilder stringBuilder = new StringBuilder();
 
+            String stationTitleSSML = TextToSpeechHelper.stationSSML(station.getTitle());
+
             if (departures.size() == 0) {
-                stringBuilder.append(String.format("Ab %s aktuell kein Fahrbetrieb. ", station.getTitle()));
+                stringBuilder.append(String.format("Ab %s aktuell kein Fahrbetrieb. ", stationTitleSSML));
             } else {
-                stringBuilder.append(String.format("Ab %s: ", station.getTitle()));
-                List<KvbStationDeparture> limitDepartures = departures.subList(0, 4 > departures.size() ? departures.size() : 4);
-                for (KvbStationDeparture departure : limitDepartures) {
-                    stringBuilder.append(String.format("Linie %s nach %s ", departure.getLine(), departure.getDestination()));
-                    if (departure.getMinutes() == 0) stringBuilder.append("Abfahrt sofort.");
-                    if (departure.getMinutes() == 1) stringBuilder.append("in einer Minute.");
-                    if (departure.getMinutes() > 1)
-                        stringBuilder.append(String.format("in %s Minuten.", departure.getMinutes()));
-                    stringBuilder.append("<break strength=\"strong\" />");
+
+                if(minDuration != null){
+                    departures.removeIf(p -> p.getDuration().compareTo(minDuration) < 0);
+                }
+                departures = departures.stream().limit(4).collect(Collectors.toList());
+
+                if(departures.size() == 0){
+                    stringBuilder.append(String.format("Ab %s keine passenden Abfahrten. ", stationTitleSSML));
+                } else {
+                    stringBuilder.append(String.format("Ab %s: ", stationTitleSSML));
+                    for (KvbStationDeparture departure : departures) {
+
+                        stringBuilder.append(String.format("Linie %s nach %s ", departure.getLine(), departure.getDestination()));
+
+                        if (departure.getDuration().toMinutes() == 0) stringBuilder.append("Abfahrt sofort.");
+                        if (departure.getDuration().toMinutes() == 1) stringBuilder.append("in einer Minute.");
+                        if (departure.getDuration().toMinutes() > 1)
+                            stringBuilder.append(String.format("in %s Minuten.", departure.getDuration().toMinutes()));
+                        stringBuilder.append("<break strength=\"strong\" />");
+                    }
                 }
             }
 
@@ -159,7 +188,7 @@ public class DepartureIntentAction implements IntentAction {
             );
         }
 
-        stringBuilder.append(Joiner.on(" \n").join(station.getDisruptionMessage()));
+        stringBuilder.append(station.getDisruptionMessage().stream().collect(Collectors.joining(" \n")));
         simpleCard.setContent(stringBuilder.toString());
 
         return simpleCard;
@@ -214,5 +243,24 @@ public class DepartureIntentAction implements IntentAction {
         return render;
     }
 
+    public Integer stationSlotResolution(Slot stationSlot) throws StationResolutionException {
+        if(stationSlot.getValue() == null){
+            logger.error("Station slot is null.");
+            throw new StationResolutionException(stationSlot.getValue());
+        }
 
+        Resolution res = stationSlot.getResolutions().getResolutionAtIndex(0);
+        if(res.getStatus().getCode() == StatusCode.ER_SUCCESS_MATCH){
+            ValueWrapper valueWrapper = res.getValueWrapperAtIndex(0);
+            Value value = valueWrapper.getValue();
+            logger.info("Station resolution passed. ID: {} NAME: {} LISTEN: {}",
+                    value.getId(),
+                    value.getName(),
+                    stationSlot.getValue());
+            return Integer.valueOf(value.getId());
+        } else {
+            logger.warn("Station resolution failed. STATUS: {} LISTEN: {}",res.getStatus(),stationSlot.getValue());
+            throw new StationResolutionException(stationSlot.getValue());
+        }
+    }
 }

@@ -1,17 +1,18 @@
 package de.philippst.alexa.kvb.model;
 
-/**
- * Created by Philipp on 15.01.2017.
- */
+import java.time.Duration;
+
 public class KvbStationDeparture {
-    public String line;
-    public String destination;
-    public Integer minutes;
+    private String line;
+    private String destination;
+    private Integer minutes;
+    private Duration duration;
 
     public KvbStationDeparture(String line, String destination, Integer minutes){
         this.line = line;
         this.destination = destination;
         this.minutes = minutes;
+        this.duration = Duration.ofMinutes(this.minutes);
     }
 
     public KvbStationDeparture(String line, String destination, String minutes){
@@ -24,6 +25,7 @@ public class KvbStationDeparture {
         } else {
             this.minutes = Integer.valueOf(myMinutes.trim());
         }
+        this.duration = Duration.ofMinutes(this.minutes);
     }
 
     public String longString(){
@@ -56,5 +58,13 @@ public class KvbStationDeparture {
 
     public void setMinutes(Integer minutes) {
         this.minutes = minutes;
+    }
+
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Duration duration) {
+        this.duration = duration;
     }
 }

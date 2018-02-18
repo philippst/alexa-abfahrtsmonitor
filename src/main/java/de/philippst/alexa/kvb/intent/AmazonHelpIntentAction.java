@@ -8,8 +8,11 @@ import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SsmlOutputSpeech;
 
+import javax.inject.Inject;
+
 public class AmazonHelpIntentAction implements IntentAction {
 
+    @Inject
     protected AmazonHelpIntentAction() {
     }
 

@@ -1,23 +1,23 @@
 package de.philippst.alexa.kvb;
 
 import com.amazon.speech.json.SpeechletRequestEnvelope;
-import com.amazon.speech.slu.Intent;
 import com.amazon.speech.speechlet.*;
-import de.philippst.alexa.kvb.intent.IntentHandlerService;
+import de.philippst.alexa.kvb.intent.IntentAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
+import java.util.Map;
 
 public class KvbAlexaSkillSpeechlet implements SpeechletV2 {
 
     private final Logger logger = LoggerFactory.getLogger(KvbAlexaSkillSpeechlet.class);
 
-    private final IntentHandlerService intentHandlerService;
+    private Map<String, IntentAction> intentActions;
 
     @Inject
-    public KvbAlexaSkillSpeechlet(IntentHandlerService intentHandlerService) {
-        this.intentHandlerService = intentHandlerService;
+    public KvbAlexaSkillSpeechlet(Map<String, IntentAction> intentActions) {
+        this.intentActions = intentActions;
     }
 
     @Override
@@ -32,18 +32,32 @@ public class KvbAlexaSkillSpeechlet implements SpeechletV2 {
         LaunchRequest request = requestEnvelope.getRequest();
         Session session = requestEnvelope.getSession();
         logger.info("onLaunch requestId={}, sessionId={}",request.getRequestId(),session.getSessionId());
-        return intentHandlerService.launch(requestEnvelope);
+
+        return this.intentActions.get("WelcomeIntent")
+                .perform(null,requestEnvelope.getSession(),requestEnvelope.getContext());
+
     }
 
     @Override
     public SpeechletResponse onIntent(final SpeechletRequestEnvelope<IntentRequest> requestEnvelope){
         IntentRequest request = requestEnvelope.getRequest();
-        Session session = requestEnvelope.getSession();
-        logger.info("onIntent requestId={}, sessionId={}", request.getRequestId(), session.getSessionId());
+        logger.info("onIntent={}", request.getIntent().getName());
 
-        logger.info("onIntent {}", request.getIntent().getName());
+        String intentName = requestEnvelope.getRequest().getIntent().getName();
 
-        return intentHandlerService.handle(requestEnvelope);
+        switch(intentName){
+            case "AMAZON.StartOverIntent":
+                intentName = "AMAZON.HelpIntent"; break;
+            case "AMAZON.CancelIntent":
+            case "AMAZON.NoIntent":
+                intentName = "AMAZON.StopIntent"; break;
+            case "AMAZON.YesIntent":
+                intentName = "HearMoreIntent"; break;
+        }
+
+        return this.intentActions.get(intentName)
+                .perform(requestEnvelope.getRequest(), requestEnvelope.getSession(),requestEnvelope.getContext());
+
     }
 
     @Override

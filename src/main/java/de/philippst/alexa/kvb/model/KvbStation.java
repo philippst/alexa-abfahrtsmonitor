@@ -1,8 +1,5 @@
 package de.philippst.alexa.kvb.model;
 
-/**
- * Created by Philipp on 15.01.2017.
- */
 import java.util.List;
 
 public class KvbStation {

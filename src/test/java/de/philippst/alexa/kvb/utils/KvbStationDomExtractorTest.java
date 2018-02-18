@@ -112,7 +112,7 @@ public class KvbStationDomExtractorTest {
     public void getGlobalDisruptionsTrainSeveral() throws Exception {
         Document dom = Jsoup.parse(getResourceFile("disruptions-train-several.html"),"utf-8");
         List<KvbDisruption> disruptionMessages = KvbStationDomExtractor.getGlobalDisruptionMessage(dom);
-        assertEquals(7,disruptionMessages.size());
+        assertEquals(2,disruptionMessages.size());
     }
 
 }

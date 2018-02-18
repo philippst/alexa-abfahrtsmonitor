@@ -12,12 +12,17 @@ import java.util.List;
 
 public class HearMoreIntentAction implements IntentAction {
 
-    @Inject
     AmazonStopIntentAction amazonStopIntentAction;
+
+    @Inject
+    public HearMoreIntentAction(AmazonStopIntentAction amazonStopIntentAction) {
+        this.amazonStopIntentAction = amazonStopIntentAction;
+    }
 
     @Override
     public SpeechletResponse perform(IntentRequest intent, Session session, Context context) {
         if (session.getAttributes().containsKey("disruption")) {
+            @SuppressWarnings("unchecked")
             List<String> disruptionMessages = (List<String>) session.getAttribute("disruption");
             StringBuilder stringBuilder = new StringBuilder();
 
