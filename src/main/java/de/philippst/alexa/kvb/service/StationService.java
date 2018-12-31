@@ -10,9 +10,7 @@ import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Inject;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -21,11 +19,7 @@ public class StationService {
 
     private final Logger logger = LoggerFactory.getLogger(StationService.class);
 
-    public static final int KVB_REQUEST_TIMEOUT = 1000*3;
-
-    @Inject
-    public StationService() {
-    }
+    private static final int KVB_REQUEST_TIMEOUT = 1000*3;
 
     public KvbStation getStationDeparture(int stationId) throws KvbException, URISyntaxException, IOException {
         if(stationId == 0) throw new KvbException("Invalid kvb station id");

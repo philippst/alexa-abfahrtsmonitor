@@ -12,6 +12,7 @@ public class TextToSpeechHelper {
             .replace("(H)", "")
             .replace(" Str. ", " Straße ")
             .replace("pl. ", "platz ")
+            .replace("-Zentr. ", "-Zentrum ")
             .replace("Bad Godesb.", "Bad Godesberg")
             .replace("Wir werden die verspäteten Bahnen schnellstmöglich wieder nach Fahrplan für Sie einsetzen *", "")
             .replace(" *", "<break strength=\"medium\" />")
@@ -42,7 +43,10 @@ public class TextToSpeechHelper {
         }
 
         stationTitle = stationTitle
+                .replace("/hbf","/Hauptbahnhof")
                 .replace("str.","straße")
+                .replace("h.-hermülheim ","hürth-Hermülheim")
+                .replace("-zentr.","-zentrum")
                 .replace(" bf"," bahnhof");
 
         return stationTitle;

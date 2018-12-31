@@ -1,15 +1,14 @@
-plugins {
-    id "net.ltgt.apt" version "0.14"
-}
+import com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer
 
-apply plugin: 'java'
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '4.0.3'
+}
 
 group = 'de.philippst.alexa'
-version = '1.1'
-
-tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
-}
+version = '2.0'
+sourceCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
 
 repositories {
     mavenCentral()
@@ -17,33 +16,18 @@ repositories {
 
 dependencies {
     compile (
-            'com.amazonaws:aws-lambda-java-core:1.2.0',
-            'com.amazon.alexa:alexa-skills-kit:1.8.1',
-            'org.jsoup:jsoup:1.11.2',
-            'com.amazonaws:aws-lambda-java-log4j:1.0.0',
-            'org.slf4j:slf4j-log4j12:1.7.25',
-            'org.slf4j:jcl-over-slf4j:1.7.25',
-            'com.google.dagger:dagger:2.14.1'
+            'com.amazon.alexa:ask-sdk:2.11.1',
+            'org.jsoup:jsoup:1.11.3',
+            'org.apache.logging.log4j:log4j-core:2.8.2',
+            'org.apache.logging.log4j:log4j-api:2.8.2',
+            'com.amazonaws:aws-lambda-java-log4j2:1.1.0'
     )
-
-    compile ('com.amazonaws:aws-java-sdk-dynamodb:1.11.280') {
-        exclude module: 'commons-logging'
-    }
 
     testCompile (
-            'org.junit.jupiter:junit-jupiter-engine:5.0.3'
-    )
-    annotationProcessor (
-            'com.google.dagger:dagger-compiler:2.14.1'
+            'org.junit.jupiter:junit-jupiter-engine:5.3.2'
     )
 }
 
-task buildZip(type: Zip) {
-    from compileJava
-    from processResources
-    into('lib') {
-        from configurations.runtime
-    }
+shadowJar{
+    transform(Log4j2PluginsCacheFileTransformer)
 }
-
-build.dependsOn buildZip
