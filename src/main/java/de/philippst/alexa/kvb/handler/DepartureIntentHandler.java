@@ -58,17 +58,17 @@ public class DepartureIntentHandler implements RequestHandler {
         Slot stationSlot = slots.get("Station");
 
         if(stationSlot.getValue() != null){
-            logger.info("Received station slot: {}",stationSlot.getValue());
+            logger.debug("Received station slot: {}",stationSlot.getValue());
             Optional<Integer> optionalStationSlotId = this.stationSlotResolution(stationSlot);
             if(optionalStationSlotId.isPresent()){
                 stationId = optionalStationSlotId.get();
                 this.savePersistentStationId(input,stationId);
             } else {
-                logger.info("Resolution of station slot failed: {}",stationSlot.getValue());
+                logger.warn("Resolution of station slot failed: {}",stationSlot.getValue());
                 return this.askForStation(input);
             }
         } else {
-            logger.info("Received no station slot.");
+            logger.debug("Received no station slot.");
             Optional<Integer> optionalPersistentStationId = this.getPersistentStationId(input);
             if(optionalPersistentStationId.isPresent()) {
                 stationId = optionalPersistentStationId.get();

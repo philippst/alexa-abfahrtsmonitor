@@ -2,7 +2,7 @@ import com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCach
 
 plugins {
     id 'java'
-    id 'com.github.johnrengelman.shadow' version '4.0.3'
+    id 'com.github.johnrengelman.shadow' version '5.0.0'
 }
 
 group = 'de.philippst.alexa'
@@ -16,7 +16,7 @@ repositories {
 
 dependencies {
     compile (
-            'com.amazon.alexa:ask-sdk:2.11.1',
+            'com.amazon.alexa:ask-sdk:2.16.0',
             'org.jsoup:jsoup:1.11.3',
             'org.apache.logging.log4j:log4j-core:2.8.2',
             'org.apache.logging.log4j:log4j-api:2.8.2',

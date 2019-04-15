@@ -2,7 +2,6 @@ package de.philippst.alexa.kvb.handler;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
 import de.philippst.alexa.kvb.model.KvbDisruption;
 import de.philippst.alexa.kvb.service.StationService;
